@@ -5,7 +5,7 @@
     <h2>Add New Lead</h2>
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('leads.store') }}" method="POST">
+            <form action="{{ route('leads.store') }}" method="POST" novalidate>
                 @csrf
                 
                 <div class="mb-3">
@@ -16,7 +16,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                    <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
                     @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -81,18 +81,4 @@
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Remove 'is-invalid' class when user starts typing or selects a new value
-    const invalidInputs = document.querySelectorAll('.is-invalid');
-    invalidInputs.forEach(input => {
-        input.addEventListener('input', function() {
-            this.classList.remove('is-invalid');
-        });
-        input.addEventListener('change', function() {
-            this.classList.remove('is-invalid');
-        });
-    });
-});
-</script>
 @endsection
